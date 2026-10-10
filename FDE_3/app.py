@@ -93,10 +93,10 @@ with left:
         c1, c2 = st.columns(2)
         with c1:
             st.markdown(f"**Department:** {dept_name}")
-            st.markdown(f"**Role:** {emp.get('role', 'N/A')}")
+            st.markdown(f"**Role / Level:** {emp.get('level', emp.get('role', 'N/A'))}")
         with c2:
             st.markdown(f"**Manager ID:** `{emp.get('manager_id', 'N/A')}`")
-            st.markdown(f"**Location:** {emp.get('location', 'N/A')}")
+            st.markdown(f"**Location:** {emp.get('country', emp.get('location', 'N/A'))}")
 
     # Request Specs Card
     with st.container(border=True):
@@ -219,7 +219,9 @@ with right:
                 st.info(f"Clarification request sent to {emp.get('name', 'Requester')}.")
         with act_col3:
             if st.button("🛑 Escalate to Human", use_container_width=True):
-                st.warning(f"Request {request_id} escalated for manual risk and security exception review.")
+                st.warning(
+                    f"Demo only: {request_id} marked for human review. "
+                     "No external escalation was sent.")
 
     else:
         st.info("Click **Run Copilot Analysis** to evaluate this request against business data and procurement policies.")
